@@ -245,7 +245,7 @@ INSERT INTO opportunities (
 -- ─── Alumni ────────────────────────────────────────────────────────────────────
 
 INSERT INTO alumni (
-  full_name, grad_year, current_firm, current_role, previous_firms,
+  full_name, grad_year, current_firm, current_title, previous_firms,
   linkedin_url, open_to_chat, areas_of_expertise, verified
 ) VALUES
 

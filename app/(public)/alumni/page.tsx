@@ -26,7 +26,7 @@ export default function AlumniPage() {
   const firms = [...new Set(all.map((a) => a.current_firm))].sort()
 
   const filtered = all.filter((a) => {
-    if (search && !`${a.full_name} ${a.current_firm} ${a.current_role}`.toLowerCase().includes(search.toLowerCase()))
+    if (search && !`${a.full_name} ${a.current_firm} ${a.current_title}`.toLowerCase().includes(search.toLowerCase()))
       return false
     if (firmFilter && a.current_firm !== firmFilter) return false
     if (chatOnly && !a.open_to_chat) return false

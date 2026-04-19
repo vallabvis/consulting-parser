@@ -88,7 +88,7 @@ export interface Alumni {
   full_name: string
   grad_year: number
   current_firm: string
-  current_role: string
+  current_title: string
   previous_firms: string[]
   linkedin_url: string | null
   email: string | null

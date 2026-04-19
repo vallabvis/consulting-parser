@@ -15,7 +15,7 @@ export default function AlumniCard({ alumni: a }: Props) {
         </div>
         <div className="min-w-0">
           <p className="font-semibold text-sm leading-tight">{a.full_name}</p>
-          <p className="text-xs text-muted-foreground">{a.current_role}</p>
+          <p className="text-xs text-muted-foreground">{a.current_title}</p>
           <p className="text-xs text-muted-foreground">{a.current_firm}</p>
         </div>
         <span className="ml-auto text-xs text-muted-foreground shrink-0">'{String(a.grad_year).slice(2)}</span>

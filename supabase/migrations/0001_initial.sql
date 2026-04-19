@@ -159,7 +159,7 @@ CREATE TABLE alumni (
   full_name            TEXT NOT NULL,
   grad_year            INT NOT NULL,
   current_firm         TEXT NOT NULL,
-  current_role         TEXT NOT NULL,
+  current_title        TEXT NOT NULL,
   previous_firms       TEXT[] NOT NULL DEFAULT '{}',
   linkedin_url         TEXT,
   email                TEXT,
