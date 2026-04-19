@@ -22,9 +22,7 @@ export default function Navbar() {
   const [userEmail, setUserEmail] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUserEmail(user?.email ?? null)
-    })
+    supabase.auth.getUser().then(({ data: { user } }) => setUserEmail(user?.email ?? null))
     const { data: listener } = supabase.auth.onAuthStateChange((_e, session) => {
       setUserEmail(session?.user?.email ?? null)
     })
@@ -37,24 +35,32 @@ export default function Navbar() {
   }
 
   return (
-    <header className="border-b sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+    <header className="border-b bg-white sticky top-0 z-50">
+      <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-8">
+
         {/* Wordmark */}
-        <Link href="/" className="font-bold text-base tracking-tight">
-          <span className="text-primary">Wisco</span> Consulting Hub
+        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          {/* "W" shield in cardinal red */}
+          <div className="w-7 h-7 rounded bg-[#C5050C] flex items-center justify-center">
+            <span className="text-white text-xs font-black leading-none">W</span>
+          </div>
+          <div className="leading-tight">
+            <span className="font-bold text-sm tracking-tight text-foreground">Wisco Consulting</span>
+            <span className="hidden sm:inline text-muted-foreground text-sm"> Hub</span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-0.5 flex-1">
           {NAV_LINKS.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               className={cn(
-                'px-3 py-1.5 rounded-md text-sm transition-colors',
+                'px-3.5 py-1.5 rounded text-sm transition-colors font-medium',
                 pathname.startsWith(href)
-                  ? 'bg-muted font-medium text-foreground'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  ? 'text-[#C5050C] bg-[#C5050C]/5'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-neutral-100'
               )}
             >
               {label}
@@ -62,26 +68,26 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Auth */}
-        <div className="hidden md:flex items-center gap-2">
+        {/* Auth — desktop */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
           {userEmail ? (
             <>
-              <span className="text-xs text-muted-foreground">{userEmail}</span>
+              <span className="text-xs text-muted-foreground max-w-[140px] truncate">{userEmail}</span>
               <button
                 onClick={signOut}
-                className="text-sm px-3 py-1.5 border rounded-md hover:bg-muted transition-colors"
+                className="text-xs px-3 py-1.5 border rounded font-medium hover:bg-neutral-50 transition-colors"
               >
                 Sign out
               </button>
             </>
           ) : (
             <>
-              <Link href="/login" className="text-sm px-3 py-1.5 text-muted-foreground hover:text-foreground">
+              <Link href="/login" className="text-sm px-3 py-1.5 text-muted-foreground hover:text-foreground font-medium">
                 Sign in
               </Link>
               <Link
                 href="/signup"
-                className="text-sm px-3 py-1.5 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
+                className="text-sm px-4 py-1.5 bg-[#C5050C] text-white rounded font-semibold hover:bg-[#a8040a] transition-colors"
               >
                 Sign up
               </Link>
@@ -90,48 +96,45 @@ export default function Navbar() {
         </div>
 
         {/* Mobile hamburger */}
-        <button
-          className="md:hidden p-1.5 rounded-md hover:bg-muted"
-          onClick={() => setOpen(!open)}
-        >
+        <button className="md:hidden p-1.5 rounded hover:bg-neutral-100" onClick={() => setOpen(!open)}>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t px-4 py-3 space-y-1 bg-background">
+        <div className="md:hidden border-t px-4 py-3 space-y-0.5 bg-white">
           {NAV_LINKS.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setOpen(false)}
               className={cn(
-                'block px-3 py-2 rounded-md text-sm',
+                'block px-3 py-2.5 rounded text-sm font-medium',
                 pathname.startsWith(href)
-                  ? 'bg-muted font-medium'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'text-[#C5050C] bg-[#C5050C]/5'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-neutral-100'
               )}
             >
               {label}
             </Link>
           ))}
-          <div className="pt-2 border-t mt-2">
+          <div className="pt-2 border-t mt-2 flex gap-2">
             {userEmail ? (
-              <button onClick={signOut} className="block w-full text-left px-3 py-2 text-sm text-muted-foreground">
-                Sign out ({userEmail})
+              <button onClick={signOut} className="text-sm text-muted-foreground px-3 py-2">
+                Sign out
               </button>
             ) : (
-              <div className="flex gap-2">
+              <>
                 <Link href="/login" onClick={() => setOpen(false)}
-                  className="flex-1 text-center text-sm px-3 py-2 border rounded-md">
+                  className="flex-1 text-center text-sm px-3 py-2 border rounded font-medium">
                   Sign in
                 </Link>
                 <Link href="/signup" onClick={() => setOpen(false)}
-                  className="flex-1 text-center text-sm px-3 py-2 bg-primary text-primary-foreground rounded-md">
+                  className="flex-1 text-center text-sm px-3 py-2 bg-[#C5050C] text-white rounded font-semibold">
                   Sign up
                 </Link>
-              </div>
+              </>
             )}
           </div>
         </div>
