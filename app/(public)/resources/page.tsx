@@ -20,12 +20,13 @@ export default async function ResourcesPage() {
     .select('*')
     .order('created_at', { ascending: true })
 
-  const byCategory = (data ?? []).reduce<Record<ResourceCategory, Resource[]>>(
+  const byCategory = (data ?? []).reduce<Partial<Record<ResourceCategory, Resource[]>>>(
     (acc, r) => {
-      acc[r.category] = [...(acc[r.category] ?? []), r]
+      const cat = r.category as ResourceCategory
+      acc[cat] = [...(acc[cat] ?? []), r]
       return acc
     },
-    {} as Record<ResourceCategory, Resource[]>
+    {}
   )
 
   return (

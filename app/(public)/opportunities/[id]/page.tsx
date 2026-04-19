@@ -76,7 +76,7 @@ export default async function OpportunityDetailPage({ params }: Props) {
           {opp.remote_eligible && (
             <span className="border text-xs px-2 py-0.5 rounded-full">Remote eligible</span>
           )}
-          {opp.target_grad_years.map((y) => (
+          {opp.target_grad_years.map((y: number) => (
             <span key={y} className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">
               '{String(y).slice(2)}
             </span>
@@ -97,7 +97,7 @@ export default async function OpportunityDetailPage({ params }: Props) {
         <section className="mb-6">
           <h2 className="font-semibold mb-3">Application Steps</h2>
           <ol className="space-y-2">
-            {opp.application_steps.map((step, i) => (
+            {opp.application_steps.map((step: string, i: number) => (
               <li key={i} className="flex gap-3 text-sm">
                 <span className="shrink-0 w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center font-medium">
                   {i + 1}
