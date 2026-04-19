@@ -50,8 +50,9 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // UW-Madison brand
-        cardinal: '#C5050C',
+        // WCC brand colors (matched from official logo)
+        cardinal: '#C5050C',   // UW official cardinal
+        maroon:   '#8B1A1A',   // WCC logo dark maroon
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -59,7 +60,8 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans:  ['var(--font-inter)', 'Inter', 'sans-serif'],
+        serif: ['var(--font-garamond)', 'EB Garamond', 'Georgia', 'serif'],
       },
       keyframes: {
         'accordion-down': {

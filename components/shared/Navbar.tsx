@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -38,16 +39,16 @@ export default function Navbar() {
     <header className="border-b bg-white sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-8">
 
-        {/* Wordmark */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          {/* "W" shield in cardinal red */}
-          <div className="w-7 h-7 rounded bg-[#C5050C] flex items-center justify-center">
-            <span className="text-white text-xs font-black leading-none">W</span>
-          </div>
-          <div className="leading-tight">
-            <span className="font-bold text-sm tracking-tight text-foreground">Wisco Consulting</span>
-            <span className="hidden sm:inline text-muted-foreground text-sm"> Hub</span>
-          </div>
+        {/* Logo */}
+        <Link href="/" className="shrink-0 flex items-center">
+          <Image
+            src="/wcc-logo.png"
+            alt="Wisconsin Consulting Club"
+            width={180}
+            height={48}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -59,7 +60,7 @@ export default function Navbar() {
               className={cn(
                 'px-3.5 py-1.5 rounded text-sm transition-colors font-medium',
                 pathname.startsWith(href)
-                  ? 'text-[#C5050C] bg-[#C5050C]/5'
+                  ? 'text-[#8B1A1A] bg-[#8B1A1A]/5'
                   : 'text-muted-foreground hover:text-foreground hover:bg-neutral-100'
               )}
             >
@@ -87,7 +88,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/signup"
-                className="text-sm px-4 py-1.5 bg-[#C5050C] text-white rounded font-semibold hover:bg-[#a8040a] transition-colors"
+                className="text-sm px-4 py-1.5 bg-[#8B1A1A] text-white rounded font-semibold hover:bg-[#6e1515] transition-colors"
               >
                 Sign up
               </Link>
@@ -112,7 +113,7 @@ export default function Navbar() {
               className={cn(
                 'block px-3 py-2.5 rounded text-sm font-medium',
                 pathname.startsWith(href)
-                  ? 'text-[#C5050C] bg-[#C5050C]/5'
+                  ? 'text-[#8B1A1A] bg-[#8B1A1A]/5'
                   : 'text-muted-foreground hover:text-foreground hover:bg-neutral-100'
               )}
             >
@@ -131,7 +132,7 @@ export default function Navbar() {
                   Sign in
                 </Link>
                 <Link href="/signup" onClick={() => setOpen(false)}
-                  className="flex-1 text-center text-sm px-3 py-2 bg-[#C5050C] text-white rounded font-semibold">
+                  className="flex-1 text-center text-sm px-3 py-2 bg-[#8B1A1A] text-white rounded font-semibold">
                   Sign up
                 </Link>
               </>

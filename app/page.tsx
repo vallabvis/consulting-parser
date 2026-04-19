@@ -51,7 +51,7 @@ export default async function LandingPage() {
     <div className="flex flex-col">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="bg-[#1a0002] text-white">
+      <section className="bg-[#1a0000] text-white">
         <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-red-300 mb-5">
             Wisconsin Consulting Club · UW–Madison
@@ -66,7 +66,7 @@ export default async function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               href="/opportunities"
-              className="inline-flex items-center justify-center gap-2 bg-[#C5050C] text-white px-7 py-3 rounded font-semibold text-sm hover:bg-[#a8040a] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#8B1A1A] text-white px-7 py-3 rounded font-semibold text-sm hover:bg-[#6e1515] transition-colors"
             >
               Browse Opportunities <ArrowRight className="h-4 w-4" />
             </Link>
@@ -89,7 +89,7 @@ export default async function LandingPage() {
             { value: stats.alumni,        label: 'Alumni in network' },
           ].map(({ value, label }) => (
             <div key={label} className="px-6 first:pl-0 last:pr-0 text-center">
-              <p className="text-3xl font-bold text-[#C5050C]">{value}</p>
+              <p className="text-3xl font-bold text-[#8B1A1A]">{value}</p>
               <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wide">{label}</p>
             </div>
           ))}
@@ -120,7 +120,7 @@ export default async function LandingPage() {
               <h2 className="text-xl font-bold tracking-tight">Upcoming Deadlines</h2>
               <p className="text-sm text-muted-foreground mt-0.5">Sorted by deadline — don't miss your window</p>
             </div>
-            <Link href="/opportunities" className="text-sm text-[#C5050C] hover:underline font-medium flex items-center gap-1">
+            <Link href="/opportunities" className="text-sm text-[#8B1A1A] hover:underline font-medium flex items-center gap-1">
               View all <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
@@ -146,7 +146,7 @@ export default async function LandingPage() {
                       {TIER_LABELS[opp.firm_tier]}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <span className="font-semibold text-sm group-hover:text-[#C5050C] transition-colors">
+                      <span className="font-semibold text-sm group-hover:text-[#8B1A1A] transition-colors">
                         {opp.firm_name}
                       </span>
                       <span className="text-muted-foreground text-sm ml-2 truncate">{opp.role_title}</span>
@@ -154,7 +154,7 @@ export default async function LandingPage() {
                     {daysLeft !== null && (
                       <span className={`text-xs font-semibold px-2.5 py-1 rounded shrink-0 ${
                         urgent
-                          ? 'bg-[#C5050C]/10 text-[#C5050C]'
+                          ? 'bg-[#8B1A1A]/10 text-[#8B1A1A]'
                           : 'bg-neutral-100 text-neutral-500'
                       }`}>
                         {daysLeft === 0 ? 'Today' : daysLeft === 1 ? '1 day' : `${daysLeft} days`}
@@ -200,16 +200,16 @@ export default async function LandingPage() {
               <Link
                 key={href}
                 href={href}
-                className="bg-white border rounded-lg p-6 hover:border-[#C5050C]/40 hover:shadow-sm transition-all flex flex-col gap-4 group"
+                className="bg-white border rounded-lg p-6 hover:border-[#8B1A1A]/40 hover:shadow-sm transition-all flex flex-col gap-4 group"
               >
-                <div className="w-9 h-9 rounded bg-[#C5050C]/10 flex items-center justify-center">
-                  <Icon className="h-4.5 w-4.5 text-[#C5050C]" />
+                <div className="w-9 h-9 rounded bg-[#8B1A1A]/10 flex items-center justify-center">
+                  <Icon className="h-4.5 w-4.5 text-[#8B1A1A]" />
                 </div>
                 <div>
                   <p className="font-semibold text-sm">{title}</p>
                   <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{body}</p>
                 </div>
-                <span className="text-xs font-semibold text-[#C5050C] group-hover:underline mt-auto">
+                <span className="text-xs font-semibold text-[#8B1A1A] group-hover:underline mt-auto">
                   {cta} →
                 </span>
               </Link>
@@ -219,7 +219,7 @@ export default async function LandingPage() {
       </section>
 
       {/* ── Bottom CTA ────────────────────────────────────────────────────── */}
-      <section className="bg-[#1a0002] text-white py-14">
+      <section className="bg-[#1a0000] text-white py-14">
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <p className="font-bold text-lg">Ready to start recruiting?</p>
@@ -227,7 +227,7 @@ export default async function LandingPage() {
           </div>
           <Link
             href="/signup"
-            className="shrink-0 inline-flex items-center gap-2 bg-[#C5050C] text-white px-6 py-2.5 rounded font-semibold text-sm hover:bg-[#a8040a] transition-colors"
+            className="shrink-0 inline-flex items-center gap-2 bg-[#8B1A1A] text-white px-6 py-2.5 rounded font-semibold text-sm hover:bg-[#6e1515] transition-colors"
           >
             Get started <ArrowRight className="h-4 w-4" />
           </Link>
