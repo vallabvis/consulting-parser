@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, MapPin, Calendar } from 'lucide-react'
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import DeadlineBadge from '@/components/shared/DeadlineBadge'
 import type { Opportunity } from '@/lib/types'
 

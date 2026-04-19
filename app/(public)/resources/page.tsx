@@ -1,5 +1,5 @@
 import { ExternalLink } from 'lucide-react'
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Resource, ResourceCategory } from '@/lib/types'
 
 const CATEGORIES: { value: ResourceCategory; label: string }[] = [

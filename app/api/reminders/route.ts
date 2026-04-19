@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createAdminClient } from '@/lib/supabase'
+import { createAdminClient } from '@/lib/supabase-server'
 
 // GET /api/reminders
 // Triggered by Vercel cron daily at 8 AM UTC (see vercel.json).

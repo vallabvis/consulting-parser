@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Briefcase, Clock, Users } from 'lucide-react'
-import { createServerSupabaseClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 export const revalidate = 3600 // re-fetch stats once per hour
 
