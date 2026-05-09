@@ -1,12 +1,7 @@
 {
   "crons": [
-    {
-      "path": "/api/ingest/greenhouse",
-      "schedule": "0 6 * * *"
-    },
-    {
-      "path": "/api/reminders",
-      "schedule": "0 8 * * *"
-    }
+    { "path": "/api/ingest/greenhouse", "schedule": "0 6 * * *"  },
+    { "path": "/api/reminders",         "schedule": "0 8 * * *"  },
+    { "path": "/api/cron/tier2-ats",    "schedule": "0 11 * * 1" }
   ]
 }
