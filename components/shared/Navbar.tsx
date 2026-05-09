@@ -9,10 +9,11 @@ import { createClient } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { href: '/opportunities', label: 'Opportunities' },
-  { href: '/alumni',        label: 'Alumni'        },
-  { href: '/resources',     label: 'Resources'     },
-  { href: '/dashboard',     label: 'My Tracker'    },
+  { href: '/opportunities',      label: 'Opportunities' },
+  { href: '/submit-opportunity', label: 'Submit Opp'    },
+  { href: '/alumni',             label: 'Alumni'        },
+  { href: '/resources',          label: 'Resources'     },
+  { href: '/dashboard',          label: 'My Tracker'    },
 ]
 
 export default function Navbar() {

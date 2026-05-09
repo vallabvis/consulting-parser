@@ -99,6 +99,19 @@ export default function AdminPage() {
     <div className="max-w-5xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">Admin</h1>
 
+      {/* Nav links */}
+      <div className="flex gap-2 mb-6 flex-wrap">
+        <a href="/admin" className="text-xs bg-[#8B1A1A] text-white px-3 py-1.5 rounded font-medium">
+          Add via URL
+        </a>
+        <a href="/admin/submissions" className="text-xs border px-3 py-1.5 rounded font-medium hover:bg-muted">
+          Review Submissions
+        </a>
+        <a href="/admin/parser-health" className="text-xs border px-3 py-1.5 rounded font-medium hover:bg-muted">
+          Parser Health
+        </a>
+      </div>
+
       {/* Tabs */}
       <div className="flex gap-1 border-b mb-6">
         {([['pending', 'Pending Approval'], ['add', 'Add via URL'], ['alumni', 'Manage Alumni']] as const).map(
