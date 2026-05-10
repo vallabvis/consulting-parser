@@ -47,6 +47,51 @@ interface ExistingRow {
 
 // ── ATS fetchers ──────────────────────────────────────────────────────────────
 
+// slug format: "tenant/wdN/BoardName"  e.g. "deloitte/wd1/Deloitte-Career"
+async function fetchWorkday(slug: string): Promise<NormalizedJob[]> {
+  const parts = slug.split('/')
+  if (parts.length < 3) throw new Error(`Invalid Workday slug (expected tenant/wdN/Board): ${slug}`)
+  const [tenant, instance, ...boardParts] = parts
+  const board = boardParts.join('/')
+  const baseUrl = `https://${tenant}.${instance}.myworkdayjobs.com`
+  const apiUrl  = `${baseUrl}/wday/cxs/${tenant}/${board}/jobs`
+
+  const results: NormalizedJob[] = []
+  let offset = 0
+  const limit = 20
+
+  while (offset < 200) {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ appliedFacets: {}, limit, offset, searchText: '' }),
+      signal: AbortSignal.timeout(12_000),
+    })
+    if (!res.ok) throw new Error(`Workday HTTP ${res.status}`)
+
+    const { jobPostings, total } = (await res.json()) as {
+      jobPostings: Array<{ title: string; externalPath: string; locationsText?: string }>
+      total: number
+    }
+
+    for (const job of jobPostings) {
+      if (!isConsultingRole(job.title)) continue
+      results.push({
+        externalId:     job.externalPath,
+        title:          job.title,
+        location:       job.locationsText ?? null,
+        applicationUrl: `${baseUrl}${job.externalPath}`,
+        description:    null,
+      })
+    }
+
+    offset += limit
+    if (offset >= total) break
+  }
+
+  return results
+}
+
 async function fetchGreenhouse(slug: string): Promise<NormalizedJob[]> {
   const res = await fetch(
     `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`,
@@ -153,6 +198,8 @@ export async function GET(req: NextRequest) {
         jobs = await fetchLever(firm.ats_company_slug)
       } else if (firm.ats_provider === 'ashby') {
         jobs = await fetchAshby(firm.ats_company_slug)
+      } else if (firm.ats_provider === 'workday') {
+        jobs = await fetchWorkday(firm.ats_company_slug)
       } else {
         continue
       }

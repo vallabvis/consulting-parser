@@ -102,7 +102,7 @@ export default function AdminPage() {
       {/* Nav links */}
       <div className="flex gap-2 mb-6 flex-wrap">
         <a href="/admin" className="text-xs bg-[#8B1A1A] text-white px-3 py-1.5 rounded font-medium">
-          Add via URL
+          Admin Home
         </a>
         <a href="/admin/submissions" className="text-xs border px-3 py-1.5 rounded font-medium hover:bg-muted">
           Review Submissions

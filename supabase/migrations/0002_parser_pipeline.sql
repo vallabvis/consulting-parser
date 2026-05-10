@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS firms (
 );
 
 ALTER TABLE firms ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "firms_public_read" ON firms;
 CREATE POLICY "firms_public_read" ON firms FOR SELECT USING (TRUE);
 
 -- ─── Extend opportunities with parser columns ──────────────────────────────────
@@ -56,6 +57,7 @@ CREATE TABLE IF NOT EXISTS parser_runs (
 
 ALTER TABLE parser_runs ENABLE ROW LEVEL SECURITY;
 -- Service role bypasses RLS; authenticated officers/admins can read
+DROP POLICY IF EXISTS "parser_runs_officer_read" ON parser_runs;
 CREATE POLICY "parser_runs_officer_read" ON parser_runs
   FOR SELECT USING (
     EXISTS (
@@ -79,6 +81,7 @@ CREATE TABLE IF NOT EXISTS opportunity_submissions (
 );
 
 ALTER TABLE opportunity_submissions ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "submissions_officer_all" ON opportunity_submissions;
 CREATE POLICY "submissions_officer_all" ON opportunity_submissions
   FOR ALL USING (
     EXISTS (
