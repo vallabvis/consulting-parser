@@ -11,11 +11,14 @@ export default async function OpportunitiesPage() {
 
   const { data } = await supabase
     .from('opportunities')
-    .select('*')
+    .select('*, firms(careers_url)')
     .eq('status', 'active')
     .order('deadline', { ascending: true, nullsFirst: false })
 
-  const opportunities = (data ?? []) as Opportunity[]
+  const opportunities = (data ?? []).map((row: any) => ({
+    ...row,
+    firm_careers_url: row.firms?.careers_url ?? null,
+  })) as Opportunity[]
 
   return <OpportunitiesList initialOpportunities={opportunities} />
 }

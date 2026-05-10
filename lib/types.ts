@@ -74,6 +74,8 @@ export interface Opportunity {
   status: OpportunityStatus
   created_at: string
   updated_at: string
+  // joined from firms table — not a DB column
+  firm_careers_url?: string | null
 }
 
 export interface PendingOpportunity extends Omit<Opportunity, 'status'> {

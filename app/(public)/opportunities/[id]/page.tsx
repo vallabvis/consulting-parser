@@ -24,12 +24,14 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function OpportunityDetailPage({ params }: Props) {
   const supabase = await createServerSupabaseClient()
-  const { data: opp } = await supabase
+  const { data: raw } = await supabase
     .from('opportunities')
-    .select('*')
+    .select('*, firms(careers_url)')
     .eq('id', params.id)
     .eq('status', 'active')
     .single()
+
+  const opp = raw ? { ...raw, firm_careers_url: (raw as any).firms?.careers_url ?? null } : null
 
   if (!opp) notFound()
 
@@ -134,8 +136,8 @@ export default async function OpportunityDetailPage({ params }: Props) {
       )}
 
       {/* CTA */}
-      <div className="flex gap-3">
-        {opp.application_url && (
+      <div className="flex gap-3 flex-wrap">
+        {opp.application_url ? (
           <a
             href={opp.application_url}
             target="_blank"
@@ -144,7 +146,16 @@ export default async function OpportunityDetailPage({ params }: Props) {
           >
             Apply Now <ExternalLink className="h-4 w-4" />
           </a>
-        )}
+        ) : opp.firm_careers_url ? (
+          <a
+            href={opp.firm_careers_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-primary text-primary px-5 py-2.5 rounded-lg font-medium hover:bg-primary/5 transition-colors text-sm"
+          >
+            Visit Careers Page <ExternalLink className="h-4 w-4" />
+          </a>
+        ) : null}
         <SaveButton opportunityId={opp.id} />
       </div>
     </div>

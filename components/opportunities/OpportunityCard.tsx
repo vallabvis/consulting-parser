@@ -73,7 +73,7 @@ export default function OpportunityCard({ opportunity: opp }: Props) {
         >
           View
         </Link>
-        {opp.application_url && (
+        {opp.application_url ? (
           <a
             href={opp.application_url}
             target="_blank"
@@ -82,7 +82,16 @@ export default function OpportunityCard({ opportunity: opp }: Props) {
           >
             Quick Apply <ExternalLink className="h-3 w-3" />
           </a>
-        )}
+        ) : opp.firm_careers_url ? (
+          <a
+            href={opp.firm_careers_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-1 text-xs border border-primary/40 text-primary rounded-md py-1.5 hover:bg-primary/5 transition-colors"
+          >
+            Careers Page <ExternalLink className="h-3 w-3" />
+          </a>
+        ) : null}
       </div>
     </div>
   )
