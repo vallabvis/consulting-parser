@@ -63,16 +63,16 @@ export default function Navbar() {
 
   return (
     <header className="border-b border-border bg-background sticky top-0 z-50 shadow-sm">
-      <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between gap-8">
+      <div className="max-w-5xl mx-auto px-6 h-24 flex items-center justify-between gap-8">
 
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center">
           <Image
             src="/wcc-logo.png"
             alt="Wisconsin Consulting Club"
-            width={280}
-            height={75}
-            className="h-16 w-auto object-contain dark:brightness-0 dark:invert"
+            width={340}
+            height={90}
+            className="h-20 w-auto object-contain dark:brightness-0 dark:invert"
             priority
           />
         </Link>

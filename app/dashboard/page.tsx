@@ -125,8 +125,8 @@ export default function DashboardPage() {
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-muted-foreground">{todayLabel()}</p>
-          <h1 className="text-3xl font-serif font-semibold mt-0.5">
+          <p className="text-sm font-medium text-[#8B1A1A]">{todayLabel()}</p>
+          <h1 className="text-3xl font-serif font-semibold mt-0.5 text-foreground">
             {greeting()}{firstName ? `, ${firstName}` : ''}.
           </h1>
         </div>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
           ].map(({ label, value, icon: Icon, color, bg }) => (
             <div key={label} className="bg-white border rounded-xl p-4 flex flex-col gap-2.5">
               <div className="flex items-center justify-between">
-                <p className="text-xs text-muted-foreground font-medium leading-tight">{label}</p>
+                <p className="text-xs font-semibold text-foreground leading-tight">{label}</p>
                 <div className={`w-7 h-7 rounded-lg ${bg} flex items-center justify-center`}>
                   <Icon className={`h-3.5 w-3.5 ${color}`} />
                 </div>
@@ -170,7 +170,7 @@ export default function DashboardPage() {
         {/* Left — all upcoming deadlines */}
         <div className="lg:col-span-3 bg-white border rounded-xl overflow-hidden">
           <div className="px-5 py-4 border-b flex items-center justify-between">
-            <h2 className="font-semibold text-sm">All Upcoming Deadlines</h2>
+            <h2 className="font-semibold text-[#8B1A1A]">All Upcoming Deadlines</h2>
             <Link href="/opportunities" className="text-xs text-[#8B1A1A] hover:underline font-medium flex items-center gap-0.5">
               View all <ChevronRight className="h-3.5 w-3.5" />
             </Link>
@@ -222,7 +222,7 @@ export default function DashboardPage() {
           {/* Pipeline summary */}
           <div className="bg-white border rounded-xl overflow-hidden">
             <div className="px-5 py-4 border-b">
-              <h2 className="font-semibold text-sm">Your Pipeline</h2>
+              <h2 className="font-semibold text-[#8B1A1A]">Your Pipeline</h2>
             </div>
             <div className="p-5 space-y-3.5">
               {loading ? (
@@ -242,8 +242,8 @@ export default function DashboardPage() {
                 ].map(({ label, count, color }) => (
                   <div key={label} className="space-y-1">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-muted-foreground">{label}</span>
-                      <span className="font-semibold tabular-nums">{count}</span>
+                      <span className="text-foreground font-medium">{label}</span>
+                      <span className="font-bold tabular-nums text-[#8B1A1A]">{count}</span>
                     </div>
                     <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
                       <div
@@ -313,7 +313,7 @@ export default function DashboardPage() {
       <div id="tracker" className="bg-white border rounded-xl overflow-hidden">
         <div className="px-5 py-4 border-b flex items-center justify-between">
           <div>
-            <h2 className="font-semibold">Application Tracker</h2>
+            <h2 className="font-semibold text-[#8B1A1A]">Application Tracker</h2>
             <p className="text-xs text-muted-foreground mt-0.5">
               {apps.length} opportunit{apps.length === 1 ? 'y' : 'ies'} tracked
             </p>
