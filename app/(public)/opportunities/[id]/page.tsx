@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ExternalLink, MapPin, Calendar } from 'lucide-react'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import DeadlineBadge from '@/components/shared/DeadlineBadge'
+import SaveButton from '@/components/opportunities/SaveButton'
 import type { Opportunity } from '@/lib/types'
 
 interface Props {
@@ -144,10 +145,7 @@ export default async function OpportunityDetailPage({ params }: Props) {
             Apply Now <ExternalLink className="h-4 w-4" />
           </a>
         )}
-        {/* "Save to tracker" — requires auth, handled client-side in the next iteration */}
-        <button className="border px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-muted transition-colors">
-          Save to My Tracker
-        </button>
+        <SaveButton opportunityId={opp.id} />
       </div>
     </div>
   )

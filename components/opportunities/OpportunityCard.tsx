@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 import DeadlineBadge from '@/components/shared/DeadlineBadge'
+import SaveButton from '@/components/opportunities/SaveButton'
 import { cn } from '@/lib/utils'
 import type { Opportunity } from '@/lib/types'
 
@@ -28,14 +29,16 @@ export default function OpportunityCard({ opportunity: opp }: Props) {
       {/* Header row */}
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          {/* Firm logo placeholder — 32×32 colored circle with initials */}
-          <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-muted-foreground mb-2">
+          <div className="w-8 h-8 rounded-full bg-[#8B1A1A]/10 flex items-center justify-center text-xs font-bold text-[#8B1A1A] mb-2">
             {opp.firm_name.slice(0, 2).toUpperCase()}
           </div>
           <p className="font-semibold text-sm leading-tight">{opp.firm_name}</p>
           <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{opp.role_title}</p>
         </div>
-        {opp.deadline && !passed && <DeadlineBadge deadline={opp.deadline} />}
+        <div className="flex flex-col items-end gap-1 shrink-0">
+          {opp.deadline && !passed && <DeadlineBadge deadline={opp.deadline} />}
+          <SaveButton opportunityId={opp.id} variant="icon" />
+        </div>
       </div>
 
       {/* Grad year badges */}
